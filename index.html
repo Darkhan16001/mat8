@@ -1,0 +1,3121 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§8 Айналу денелері | MATH LAB PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#071525;
+ --nav:#102c48;
+ --panel:#173a57;
+ --border:#527d9f;
+ --blue:#89dcff;
+ --gold:#ffe18e;
+ --green:#8eebbd;
+ --red:#ff9eb2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%}
+body{
+ background:var(--bg);
+ color:#f7fbff;
+ font-family:Manrope,Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{
+ outline:3px solid var(--gold);
+ outline-offset:2px;
+}
+#app{
+ height:100dvh;
+ display:grid;
+ grid-template-columns:260px minmax(0,1fr);
+ grid-template-rows:76px minmax(0,1fr);
+}
+header{
+ grid-column:1/-1;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding:9px 20px;
+ background:#102c48;
+ border-bottom:1px solid var(--border);
+}
+.logo{font-size:29px;font-weight:800}
+.logo span,.eyebrow,.sideTitle{color:var(--blue)}
+.subtitle{font-size:12px;color:#bed8e9}
+.topTools{display:flex;align-items:center;gap:8px}
+.topTools button,.topBadge{
+ padding:10px 13px;
+ border-radius:10px;
+ border:1px solid #77afce;
+ background:#286e9b;
+ color:white;
+ font-size:14px;
+ font-weight:800;
+}
+.topBadge{background:#1b4a6b}
+aside{
+ grid-column:1;
+ grid-row:2;
+ min-height:0;
+ display:flex;
+ flex-direction:column;
+ overflow-y:auto;
+ padding:12px;
+ background:var(--nav);
+ border-right:2px solid var(--border);
+}
+.sideTitle{
+ margin:13px 5px 9px;
+ font-size:13px;
+ font-weight:800;
+}
+.sideBtn,.sideTool{
+ display:block;
+ width:100%;
+ padding:13px 12px;
+ margin:4px 0;
+ border-radius:10px;
+ text-align:left;
+ color:#eff9ff;
+ font-size:15px;
+ font-weight:800;
+}
+.sideBtn{
+ background:transparent;
+ border:1px solid transparent;
+}
+.sideBtn:hover{background:#205474}
+.sideBtn.active{
+ background:#296e99;
+ border-color:#82c7ea;
+ box-shadow:inset 5px 0 #b2edff;
+}
+.sideBottom{margin-top:auto}
+.sideTool{
+ background:#215476;
+ border:1px solid #6792b1;
+ font-size:13px;
+}
+.timeBox{
+ background:#163b59;
+ border:1px solid #648bab;
+ border-radius:12px;
+ margin-top:10px;
+ padding:12px;
+}
+.timeRow{
+ display:flex;
+ justify-content:space-between;
+ gap:7px;
+ margin:9px 0;
+ font-size:12px;
+}
+.timeRow b{color:var(--gold);font-size:15px}
+.timeBtns{display:flex;gap:5px}
+.timeBtns button{
+ flex:1;
+ padding:9px;
+ color:white;
+ background:#2879a6;
+ border:0;
+ border-radius:7px;
+ font-weight:800;
+}
+main{
+ grid-column:2;
+ grid-row:2;
+ min-height:0;
+ min-width:0;
+ display:flex;
+ flex-direction:column;
+ background:radial-gradient(ellipse at 80% 0%,#1a4a70,#071525 75%);
+}
+#slideView{
+ flex:1;
+ min-height:0;
+ overflow-y:auto;
+ padding:40px clamp(18px,4vw,62px) 35px;
+}
+.slide{
+ width:100%;
+ max-width:1220px;
+ margin:auto;
+ min-width:0;
+}
+.eyebrow{
+ font-size:17px;
+ font-weight:800;
+ letter-spacing:1px;
+ margin-bottom:13px;
+}
+h1{
+ margin:0 0 24px;
+ font-size:clamp(35px,4vw,56px);
+ line-height:1.35;
+}
+.lead{
+ font-size:clamp(24px,2.4vw,32px);
+ line-height:1.8;
+ color:#e7f3ff;
+}
+.card{
+ min-width:0;
+ padding:25px;
+ margin:18px 0;
+ border:2px solid var(--border);
+ border-radius:20px;
+ background:var(--panel);
+}
+.card h3{
+ color:var(--blue);
+ font-size:clamp(27px,2.8vw,37px);
+ line-height:1.4;
+ margin:0 0 12px;
+}
+.card p{
+ font-size:clamp(21px,2.1vw,28px);
+ line-height:1.75;
+ margin:12px 0;
+}
+strong{color:var(--gold)}
+.formula{
+ padding:23px;
+ margin:18px 0;
+ background:#081e33;
+ border-left:6px solid var(--gold);
+ border-radius:13px;
+ text-align:center;
+ font-size:clamp(28px,3vw,43px);
+ font-weight:800;
+ line-height:1.6;
+ overflow-x:auto;
+}
+.step{
+ padding:16px 20px;
+ margin:11px 0;
+ background:#205273;
+ border-left:5px solid var(--blue);
+ border-radius:11px;
+ font-size:clamp(20px,2vw,27px);
+ line-height:1.75;
+}
+.step:last-child{
+ background:#1a5147;
+ border-color:var(--green);
+}
+.tag{
+ display:inline-block;
+ padding:8px 13px;
+ background:#286284;
+ border-radius:8px;
+ color:#c7efff;
+ font-size:15px;
+ font-weight:800;
+}
+.figure{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ min-width:0;
+ width:100%;
+ padding:17px;
+ margin:19px 0;
+ border-radius:19px;
+ border:2px solid #6497b6;
+ background:linear-gradient(135deg,#10324f,#205778);
+}
+.figure svg{
+ display:block;
+ width:100%;
+ max-width:640px;
+ max-height:350px;
+ height:auto;
+}
+.figure figcaption{
+ text-align:center;
+ margin-top:10px;
+ font-size:20px;
+ font-weight:800;
+ color:#e5f3ff;
+}
+.grid2{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;
+}
+.grid2>*{min-width:0}
+.grid2 .figure{margin:0}
+.grid2 svg{max-height:245px}
+details{
+ padding:19px;
+ margin:15px 0;
+ background:#1b486a;
+ border:1px solid #648eac;
+ border-radius:12px;
+}
+summary{
+ font-size:23px;
+ font-weight:800;
+ color:var(--green);
+ cursor:pointer;
+}
+.action{
+ padding:15px 22px;
+ background:#188ccd;
+ border:0;
+ border-radius:10px;
+ color:white;
+ font-size:20px;
+ font-weight:800;
+}
+.scoreGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+}
+.score{
+ background:#225779;
+ border:1px solid #7297b4;
+ border-radius:12px;
+ padding:16px;
+ text-align:center;
+ font-size:20px;
+ font-weight:800;
+}
+.score b{
+ display:block;
+ font-size:42px;
+ color:var(--gold);
+}
+.choice{
+ display:block;
+ width:100%;
+ text-align:left;
+ padding:19px;
+ margin:11px 0;
+ background:#2a6083;
+ border:2px solid #7198b5;
+ border-radius:12px;
+ color:white;
+ font-size:23px;
+ font-weight:800;
+}
+.choice.correct{background:#168365}
+.choice.wrong{background:#a84157}
+.choice:disabled{cursor:default}
+
+/* ТӨМЕНГІ СОЛ ЖАҚТАҒЫ БАТЫРМАЛАР */
+.slideFooter{
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:20px;
+ padding:11px 19px;
+ background:#0b2943;
+ border-top:1px solid #4a7390;
+}
+.footerBtns{display:flex;gap:9px}
+.footerBtns button{
+ min-width:125px;
+ padding:12px 18px;
+ background:#286d9b;
+ color:white;
+ border-radius:9px;
+ border:1px solid #7eb6d6;
+ font-size:18px;
+ font-weight:800;
+}
+.footerBtns button:disabled{opacity:.35}
+#counter{
+ color:var(--blue);
+ font-size:20px;
+ font-weight:800;
+}
+.credit{
+ margin-left:auto;
+ font-weight:800;
+ font-size:14px;
+}
+
+/* КАЛЬКУЛЯТОР */
+#calculator{
+ display:none;
+ position:fixed;
+ z-index:150;
+ left:270px;
+ top:85px;
+ width:250px;
+ max-height:82dvh;
+ overflow-y:auto;
+ padding:9px;
+ background:#173b59;
+ border:1px solid #8cafc6;
+ border-radius:12px;
+ box-shadow:0 12px 35px #0009;
+}
+#calculator.open{display:block}
+.calcHead{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:8px;
+ background:#3c6f91;
+ border-radius:7px;
+ cursor:move;
+ touch-action:none;
+ font-size:12px;
+ font-weight:800;
+}
+.calcHead button{
+ padding:5px 8px;
+ color:white;
+ background:#ba4259;
+ border:0;
+ border-radius:6px;
+}
+#calcInput{
+ width:100%;
+ height:42px;
+ margin:8px 0;
+ padding:7px;
+ background:#081d31;
+ color:white;
+ border:1px solid #7ca4bc;
+ border-radius:7px;
+ text-align:right;
+ font-size:18px;
+}
+.calcKeys{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:4px;
+}
+.calcKeys button{
+ min-width:0;
+ min-height:35px;
+ padding:5px 0;
+ background:#426e90;
+ border:0;
+ border-radius:5px;
+ color:white;
+ font-size:11px;
+}
+
+/* СЕНСОРЛЫҚ ТАҚТА */
+#whiteboard{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:300;
+ background:white;
+ color:#29475f;
+ flex-direction:column;
+}
+#whiteboard.open{display:flex}
+.boardHeader{
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:9px;
+ padding:8px 14px;
+ background:#f4f9fd;
+ border-bottom:1px solid #d1e1ea;
+}
+.boardHeader b{font-size:20px}
+.boardHeader small{
+ display:block;
+ color:#7890a1;
+ font-size:11px;
+}
+.boardHeader button{
+ padding:10px 13px;
+ color:white;
+ background:#bd4059;
+ border:0;
+ border-radius:9px;
+ font-size:13px;
+ font-weight:800;
+}
+#boardArea{
+ flex:1;
+ min-height:0;
+ position:relative;
+ overflow:hidden;
+ background:white;
+}
+#boardCanvas{
+ display:block;
+ width:100%;
+ height:100%;
+ cursor:crosshair;
+ touch-action:none;
+}
+#boardArea.eraseMode #boardCanvas{cursor:none}
+#eraserCursor{
+ position:absolute;
+ display:none;
+ z-index:25;
+ left:0;
+ top:0;
+ border-radius:50%;
+ background:rgba(37,129,220,.30);
+ border:2px solid rgba(28,104,185,.30);
+ transform:translate(-50%,-50%);
+ pointer-events:none;
+}
+#boardStatus{
+ position:absolute;
+ bottom:10px;
+ left:10px;
+ padding:6px 11px;
+ background:#fffffff1;
+ border:1px solid #d4e0eb;
+ border-radius:20px;
+ font-size:11px;
+ pointer-events:none;
+}
+.boardToolbar{
+ flex-shrink:0;
+ background:#f3f8fc;
+ border-top:1px solid #d0e0eb;
+ padding:5px;
+}
+.toolbarRow{
+ display:flex;
+ align-items:center;
+ gap:5px;
+ overflow-x:auto;
+ scrollbar-width:thin;
+ padding:3px 0;
+}
+.toolGroup{
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ gap:4px;
+ background:white;
+ border:1px solid #d4e0eb;
+ border-radius:10px;
+ padding:4px 6px;
+}
+.toolGroup label{
+ font-size:10px;
+ font-weight:800;
+ color:#7b94a6;
+}
+.tool{
+ padding:7px 9px;
+ min-height:35px;
+ white-space:nowrap;
+ border:0;
+ border-radius:7px;
+ color:#2c526e;
+ background:#eaf3f9;
+ font-size:12px;
+ font-weight:800;
+}
+.tool.active{
+ color:white;
+ background:#1689ca;
+}
+#boardColor{
+ width:36px;
+ height:34px;
+ border:0;
+}
+#boardWidth{width:100px}
+#pageCount,#zoomCount{
+ min-width:44px;
+ text-align:center;
+ font-size:12px;
+ font-weight:800;
+}
+.boardHelp{
+ text-align:center;
+ color:#72899c;
+ font-size:10px;
+ line-height:1.5;
+}
+#boardFile{display:none}
+#pagesPanel{
+ position:absolute;
+ display:none;
+ z-index:30;
+ top:12px;
+ right:12px;
+ width:230px;
+ max-height:70%;
+ overflow-y:auto;
+ padding:12px;
+ background:#f9fcff;
+ border:1px solid #d2e0ea;
+ border-radius:12px;
+ box-shadow:0 8px 30px #0003;
+}
+#pagesPanel.open{display:block}
+#pagesPanel button{
+ display:block;
+ width:100%;
+ padding:9px;
+ margin:6px 0;
+ background:white;
+ color:#2a526d;
+ border:1px solid #d2e0ea;
+ border-radius:7px;
+ text-align:left;
+}
+#pagesPanel button.active{background:#dcefff}
+.instrument{
+ display:none;
+ position:absolute;
+ z-index:15;
+ pointer-events:none;
+ touch-action:none;
+ user-select:none;
+ transform:translate(-50%,-50%)
+ rotate(var(--rot,0deg))
+ scale(var(--scale,1));
+ transform-origin:center;
+ filter:drop-shadow(0 4px 8px #0003);
+}
+.instrument.visible{display:block}
+.instrument svg{
+ display:block;
+ pointer-events:none;
+}
+.instControls{
+ display:flex;
+ gap:3px;
+ position:absolute;
+ top:-43px;
+ left:50%;
+ transform:translateX(-50%);
+ white-space:nowrap;
+ pointer-events:auto;
+}
+.instControls button{
+ padding:6px 8px;
+ color:white;
+ background:#2a5977;
+ border:0;
+ border-radius:5px;
+ font-size:11px;
+ font-weight:800;
+ pointer-events:auto;
+}
+.instControls .drag{
+ cursor:grab;
+ background:#188ac9;
+ touch-action:none;
+}
+.instControls .close{background:#bf4259}
+
+@media(max-width:1050px){
+ #app{grid-template-columns:180px minmax(0,1fr)}
+ aside{padding:7px}
+ .sideBtn{font-size:12px;padding:9px}
+ .sideTool{font-size:11px}
+ .topBadge{display:none}
+ .grid2{grid-template-columns:1fr}
+ #calculator{left:185px}
+}
+@media(max-width:650px){
+ #app{
+  grid-template-columns:120px minmax(0,1fr);
+  grid-template-rows:65px minmax(0,1fr);
+ }
+ header{padding:6px}
+ .logo{font-size:16px}
+ .subtitle{display:none}
+ .topTools button{font-size:11px;padding:7px}
+ aside{padding:4px}
+ .sideTitle{font-size:10px}
+ .sideBtn,.sideTool{font-size:10px;padding:8px 5px}
+ #slideView{padding:24px 10px}
+ h1{font-size:27px}
+ .lead{font-size:19px}
+ .card{padding:14px}
+ .card h3{font-size:22px}
+ .card p{font-size:18px}
+ .step{font-size:18px}
+ .formula{font-size:24px}
+ .slideFooter{padding:7px;gap:7px}
+ .footerBtns{gap:4px}
+ .footerBtns button{
+  min-width:auto;
+  font-size:11px;
+  padding:8px;
+ }
+ #counter{font-size:12px}
+ .credit{display:none}
+ .scoreGrid{grid-template-columns:1fr}
+ .choice{font-size:19px}
+ #calculator{left:5px}
+ .boardHeader b{font-size:13px}
+ .boardHeader button{font-size:10px}
+}
+</style>
+</head>
+
+<body>
+<div id="app">
+<header>
+ <div>
+  <div class="logo">MATH LAB <span>PRO</span></div>
+  <div class="subtitle">
+   §8. Айналу денелері және олардың бетінің аудандары
+  </div>
+ </div>
+ <div class="topTools">
+  <span class="topBadge">80 МИНУТ</span>
+  <span class="topBadge">⭐ <span id="stars">0</span></span>
+  <button onclick="openBoard()">✎ Тақта</button>
+  <button onclick="toggleFullscreen()">⛶</button>
+ </div>
+</header>
+
+<aside>
+ <div class="sideTitle">САБАҚ БӨЛІМДЕРІ</div>
+ <div id="sectionButtons"></div>
+
+ <div class="sideBottom">
+  <div class="sideTitle">ҚҰРАЛДАР</div>
+
+  <button class="sideTool" onclick="openCalc(false)">
+   🧮 Калькулятор
+  </button>
+
+  <button class="sideTool" onclick="openCalc(true)">
+   ∑ Ғылыми калькулятор
+  </button>
+
+  <button class="sideTool" onclick="openBoard()">
+   ✎ Интерактивті тақта
+  </button>
+
+  <div class="timeBox">
+   <div class="timeRow">
+    <span>Алматы уақыты</span><b id="clock"></b>
+   </div>
+   <div class="timeRow">
+    <span>Қалған уақыт</span><b id="remaining">80:00</b>
+   </div>
+   <div class="timeRow">
+    <span>Өткен уақыт</span><b id="elapsed">00:00</b>
+   </div>
+   <div class="timeBtns">
+    <button onclick="startTimer()">▶</button>
+    <button onclick="pauseTimer()">Ⅱ</button>
+    <button onclick="resetTimer()">↻</button>
+   </div>
+  </div>
+ </div>
+</aside>
+
+<main>
+ <div id="slideView">
+  <div class="slide" id="slideContent"></div>
+ </div>
+
+ <div class="slideFooter">
+  <div class="footerBtns">
+   <button id="prevBtn" onclick="previousSlide()">← Артқа</button>
+   <button id="nextBtn" onclick="nextSlide()">Келесі →</button>
+  </div>
+  <span id="counter">1 / 37</span>
+  <span class="credit">BY DARKHAN</span>
+ </div>
+</main>
+</div>
+
+<div id="calculator">
+ <div class="calcHead" id="calcHandle">
+  <span id="calcTitle">Калькулятор</span>
+  <button onclick="closeCalc()">✕</button>
+ </div>
+ <input id="calcInput" placeholder="0">
+ <div class="calcKeys" id="calcKeys"></div>
+</div>
+
+<!-- АҚ ТАҚТА -->
+<div id="whiteboard">
+ <div class="boardHeader">
+  <div>
+   <b>MATH LAB WHITEBOARD</b>
+   <small>Саусақ · Интерактивті қалам · Геометрия</small>
+  </div>
+  <button onclick="closeBoard()">✕ Сабаққа қайту</button>
+ </div>
+
+ <div id="boardArea">
+  <canvas id="boardCanvas"></canvas>
+  <div id="eraserCursor"></div>
+  <div id="boardStatus">Қалам · 100%</div>
+
+  <div id="pagesPanel">
+   <b>Тақта беттері</b>
+   <div id="pagesList"></div>
+  </div>
+
+  <div class="instrument" id="ruler">
+   <div class="instControls">
+    <button class="drag">⠿ Жылжыту</button>
+    <button onclick="resizeInstrument('ruler',.8)">−</button>
+    <button onclick="resizeInstrument('ruler',1.25)">+</button>
+    <button onclick="rotateInstrument('ruler',-15)">↶</button>
+    <button onclick="rotateInstrument('ruler',15)">↷</button>
+    <button class="close" onclick="hideInstrument('ruler')">✕</button>
+   </div>
+   <svg id="rulerSVG" width="420" height="90" viewBox="0 0 420 90"></svg>
+  </div>
+
+  <div class="instrument" id="protractor">
+   <div class="instControls">
+    <button class="drag">⠿ Жылжыту</button>
+    <button onclick="resizeInstrument('protractor',.8)">−</button>
+    <button onclick="resizeInstrument('protractor',1.25)">+</button>
+    <button onclick="rotateInstrument('protractor',-15)">↶</button>
+    <button onclick="rotateInstrument('protractor',15)">↷</button>
+    <button class="close" onclick="hideInstrument('protractor')">✕</button>
+   </div>
+   <svg id="protractorSVG" width="380" height="210" viewBox="0 0 380 210"></svg>
+  </div>
+
+  <div class="instrument" id="square">
+   <div class="instControls">
+    <button class="drag">⠿ Жылжыту</button>
+    <button onclick="resizeInstrument('square',.8)">−</button>
+    <button onclick="resizeInstrument('square',1.25)">+</button>
+    <button onclick="rotateInstrument('square',-15)">↶</button>
+    <button onclick="rotateInstrument('square',15)">↷</button>
+    <button class="close" onclick="hideInstrument('square')">✕</button>
+   </div>
+   <svg width="290" height="290" viewBox="0 0 290 290">
+    <path d="M18 18L18 274L274 274Z M75 75L75 224L224 224Z"
+      fill="#8cc9ed" fill-opacity=".45"
+      fill-rule="evenodd" stroke="#287fab" stroke-width="4"/>
+    <text x="28" y="250" fill="#185779" font-size="17">90°</text>
+   </svg>
+  </div>
+ </div>
+
+ <div class="boardToolbar">
+  <div class="toolbarRow">
+   <div class="toolGroup">
+    <label>БЕТТЕР</label>
+    <button class="tool" onclick="prevBoardPage()">◀</button>
+    <span id="pageCount">1 / 1</span>
+    <button class="tool" onclick="nextBoardPage()">▶</button>
+    <button class="tool" onclick="addBoardPage()">+ Бет</button>
+    <button class="tool" onclick="togglePages()">▦ Беттер</button>
+    <button class="tool" onclick="deleteBoardPage()">Өшіру</button>
+   </div>
+
+   <div class="toolGroup">
+    <label>ЖАЗУ</label>
+    <button class="tool" data-tool="hand" onclick="selectTool('hand')">✋ Қол</button>
+    <button class="tool active" data-tool="pen" onclick="selectTool('pen')">✎ Қалам</button>
+    <button class="tool" data-tool="highlighter" onclick="selectTool('highlighter')">🖍 Бояу</button>
+    <button class="tool" data-tool="eraser" onclick="selectTool('eraser')">◯ Өшіргіш</button>
+    <button class="tool" data-tool="text" onclick="selectTool('text')">T Мәтін</button>
+   </div>
+
+   <div class="toolGroup">
+    <label>ФИГУРАЛАР</label>
+    <button class="tool" data-tool="line" onclick="selectTool('line')">╱ Түзу</button>
+    <button class="tool" data-tool="arrow" onclick="selectTool('arrow')">➜</button>
+    <button class="tool" data-tool="rect" onclick="selectTool('rect')">▭</button>
+    <button class="tool" data-tool="circle" onclick="selectTool('circle')">◯</button>
+    <button class="tool" data-tool="triangle" onclick="selectTool('triangle')">△</button>
+    <button class="tool" data-tool="angle" onclick="selectTool('angle')">∠</button>
+    <button class="tool" data-tool="table" onclick="selectTool('table')">▦</button>
+   </div>
+  </div>
+
+  <div class="toolbarRow">
+   <div class="toolGroup">
+    <label>ГЕОМЕТРИЯ</label>
+    <button class="tool" data-tool="compass" onclick="selectTool('compass')">◉ Циркуль</button>
+    <button class="tool" onclick="toggleInstrument('ruler')">📏 Сызғыш</button>
+    <button class="tool" onclick="toggleInstrument('protractor')">◠ Транспортир</button>
+    <button class="tool" onclick="toggleInstrument('square')">📐 Үшбұрыш</button>
+    <button class="tool" onclick="toggleGrid()">⊞ Тор</button>
+   </div>
+
+   <div class="toolGroup">
+    <label>ТҮС / ӨЛШЕМ</label>
+    <input id="boardColor" type="color" value="#1979cc">
+    <input id="boardWidth" type="range" min="1" max="25" value="5">
+   </div>
+
+   <div class="toolGroup">
+    <label>БАСҚАРУ</label>
+    <button class="tool" onclick="undoBoard()">↶</button>
+    <button class="tool" onclick="redoBoard()">↷</button>
+    <button class="tool" onclick="zoomBoard(.8)">−</button>
+    <span id="zoomCount">100%</span>
+    <button class="tool" onclick="zoomBoard(1.25)">+</button>
+    <button class="tool" onclick="resetBoardView()">⌖</button>
+    <button class="tool" onclick="clearBoard()">Тазалау</button>
+    <button class="tool" onclick="document.getElementById('boardFile').click()">+ Сурет</button>
+    <button class="tool" onclick="exportBoard()">↓ PNG</button>
+    <input id="boardFile" type="file" accept="image/*">
+   </div>
+  </div>
+
+  <div class="boardHelp">
+   Саусақпен немесе интерактивті қаламмен жазуға болады.
+   Өшіргіш жазуды толық жояды; оның көрсеткіші 30% көрінеді.
+  </div>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* ==========================================
+   1. АЙНАЛУ ДЕНЕЛЕРІНІҢ СЫЗБАЛАРЫ
+========================================== */
+
+function diagram(type){
+ const shapes={
+  cylinder:`
+   <defs>
+    <linearGradient id="cg" x1="0" x2="1">
+     <stop stop-color="#5dbeef" stop-opacity=".30"/>
+     <stop offset="1" stop-color="#a29cef" stop-opacity=".45"/>
+    </linearGradient>
+   </defs>
+   <path d="M114 95V250
+     C114 302 326 302 326 250V95Z"
+     fill="url(#cg)" stroke="#b9ecff" stroke-width="4"/>
+   <ellipse cx="220" cy="95" rx="106" ry="35"
+     fill="#77ceff" fill-opacity=".45"
+     stroke="#b9ecff" stroke-width="4"/>
+   <path d="M114 250A106 35 0 0 0 326 250"
+     fill="none" stroke="#b9ecff" stroke-width="4"/>
+   <path d="M114 250A106 35 0 0 1 326 250"
+     fill="none" stroke="#b9ecff" stroke-dasharray="7 6"/>
+   <path d="M220 95V250"
+     stroke="#ffe18e" stroke-width="5" stroke-dasharray="8 7"/>
+   <path d="M220 95H326"
+     stroke="#8defbd" stroke-width="5"/>
+   <text x="225" y="178" fill="#ffe18e" font-size="25">h</text>
+   <text x="264" y="85" fill="#8defbd" font-size="25">r</text>
+  `,
+  cone:`
+   <path d="M220 28L91 261A129 39 0 0 0 349 261Z"
+     fill="#73c8fa" fill-opacity=".35"
+     stroke="#bdeaff" stroke-width="4"/>
+   <path d="M91 261A129 39 0 0 1 349 261"
+     fill="none" stroke="#bdeaff" stroke-width="3"
+     stroke-dasharray="7 6"/>
+   <path d="M220 28V261"
+     stroke="#ffe18e" stroke-width="5" stroke-dasharray="8 7"/>
+   <path d="M220 261H349"
+     stroke="#8defbd" stroke-width="5"/>
+   <text x="230" y="150" fill="#ffe18e" font-size="25">h</text>
+   <text x="282" y="249" fill="#8defbd" font-size="25">r</text>
+  `,
+  slant:`
+   <path d="M220 28L91 261A129 39 0 0 0 349 261Z"
+     fill="#73c8fa" fill-opacity=".35"
+     stroke="#bdeaff" stroke-width="4"/>
+   <path d="M91 261A129 39 0 0 1 349 261"
+     fill="none" stroke="#bdeaff"
+     stroke-width="3" stroke-dasharray="7 6"/>
+   <path d="M220 28L349 261"
+     stroke="#ffe18e" stroke-width="6"/>
+   <path d="M220 28V261"
+     stroke="#8defbd" stroke-width="4" stroke-dasharray="8 7"/>
+   <text x="307" y="143" fill="#ffe18e" font-size="26">l</text>
+  `,
+  sphere:`
+   <defs>
+    <radialGradient id="sg" cx=".32" cy=".25" r=".9">
+     <stop stop-color="#d1f5ff" stop-opacity=".85"/>
+     <stop offset=".7" stop-color="#66bff2" stop-opacity=".43"/>
+     <stop offset="1" stop-color="#437db9" stop-opacity=".65"/>
+    </radialGradient>
+   </defs>
+   <circle cx="220" cy="165" r="132"
+     fill="url(#sg)" stroke="#bdeaff" stroke-width="4"/>
+   <ellipse cx="220" cy="165" rx="132" ry="42"
+     fill="none" stroke="#bdeaff" stroke-width="3"
+     stroke-dasharray="7 6"/>
+   <ellipse cx="220" cy="165" rx="45" ry="132"
+     fill="none" stroke="#9bdcf5" stroke-width="3"/>
+   <circle cx="220" cy="165" r="7" fill="#ffe18e"/>
+   <path d="M220 165L343 120"
+     stroke="#ffe18e" stroke-width="5"/>
+   <text x="286" y="130" fill="#ffe18e" font-size="27">r</text>
+  `,
+  hemisphere:`
+   <path d="M93 185A127 127 0 0 1 347 185"
+     fill="#72c7f5" fill-opacity=".43"
+     stroke="#bdeaff" stroke-width="4"/>
+   <ellipse cx="220" cy="185" rx="127" ry="38"
+     fill="#b398ef" fill-opacity=".4"
+     stroke="#bdeaff" stroke-width="4"/>
+   <circle cx="220" cy="185" r="6" fill="#ffe18e"/>
+   <path d="M220 185H347" stroke="#ffe18e" stroke-width="5"/>
+   <text x="276" y="175" fill="#ffe18e" font-size="25">r</text>
+  `,
+  frustum:`
+   <path d="M161 83L91 258A129 38 0 0 0 349 258L279 83"
+     fill="#74c7f7" fill-opacity=".36"
+     stroke="#bdeaff" stroke-width="4"/>
+   <ellipse cx="220" cy="83" rx="59" ry="20"
+     fill="#b098f1" fill-opacity=".5"
+     stroke="#bdeaff" stroke-width="4"/>
+   <path d="M91 258A129 38 0 0 1 349 258"
+     fill="none" stroke="#bdeaff"
+     stroke-width="3" stroke-dasharray="7 6"/>
+   <path d="M220 83V258"
+     stroke="#ffe18e" stroke-width="5" stroke-dasharray="8 7"/>
+   <text x="230" y="173" fill="#ffe18e" font-size="24">h</text>
+  `
+ };
+ return `<svg viewBox="0 0 440 330"
+ xmlns="http://www.w3.org/2000/svg"
+ role="img" aria-label="Айналу денесінің сызбасы">
+ ${shapes[type]||shapes.cylinder}
+ </svg>`;
+}
+
+function picture(type,label){
+ return `<figure class="figure">
+ ${diagram(type)}
+ <figcaption>${label}</figcaption>
+ </figure>`;
+}
+
+/* ==========================================
+   2. САБАҚ БЕТТЕРІ
+========================================== */
+
+const slides=[];
+
+function add(section,title,html){
+ slides.push({section,title,html});
+}
+
+function card(title,body){
+ return `<div class="card"><h3>${title}</h3>${body}</div>`;
+}
+
+function steps(arr){
+ return arr.map((x,i)=>`
+  <div class="step">
+   <strong>${i+1}-қадам.</strong> ${x}
+  </div>
+ `).join("");
+}
+
+function solution(title,arr){
+ return `<details>
+ <summary>${title} — шешімін көру</summary>
+ ${steps(arr)}
+ </details>`;
+}
+
+function example(title,given,arr,fig){
+ return card(title,`
+  ${picture(fig,"Шығарылған мысалдың сызбасы")}
+  <p><strong>Берілгені:</strong> ${given}</p>
+  ${steps(arr)}
+ `);
+}
+
+/* КІРІСПЕ */
+
+add("intro","§8. Айналу денелері және олардың бетінің аудандары",`
+ <p class="lead">
+  Айналу денелері — жазық фигураны белгілі
+  бір осьтің айналасында айналдыру арқылы
+  алынатын кеңістіктік денелер.
+  Бұл сабақта цилиндрдің, конустың,
+  шар мен сфераның қасиеттерін және
+  олардың бетінің ауданын есептеуді үйренеміз.
+ </p>
+
+ <div class="grid2">
+  ${picture("cylinder","Цилиндр")}
+  ${picture("cone","Конус")}
+  ${picture("sphere","Сфера және шар")}
+  ${picture("frustum","Қиық конус")}
+ </div>
+
+ ${card("Сабақ мақсаттары",`
+  <p>1. Айналу денелерін бір-бірінен ажырату.</p>
+  <p>2. Радиус, диаметр, биіктік және жасаушыны анықтау.</p>
+  <p>3. Цилиндрдің бетінің ауданын есептеу.</p>
+  <p>4. Конустың бүйір және толық бетінің ауданын табу.</p>
+  <p>5. Сфераның бетінің ауданын қолдану.</p>
+ `)}
+
+ <div class="formula">S = 4πr²</div>
+`);
+
+/* 9 ТҮСІНДІРМЕ */
+
+const theory=[
+ {
+  title:"8.1. Айналу денесі дегеніміз не?",
+  fig:"cylinder",
+  text:"Айналу денесі — жазық фигураның берілген ось бойымен толық айналуынан пайда болатын кеңістіктік дене.",
+  points:[
+   "Тіктөртбұрышты оның бір қабырғасы бойымен айналдырсақ, цилиндр шығады.",
+   "Тікбұрышты үшбұрышты бір катеті бойымен айналдырсақ, конус пайда болады.",
+   "Жарты дөңгелекті диаметрі бойымен айналдырсақ, шар пайда болады.",
+   "Айналу денелерінің беттерінде қисық бөліктер болады."
+  ]
+ },
+ {
+  title:"8.2. Цилиндрдің анықтамасы",
+  fig:"cylinder",
+  text:"Тік дөңгелек цилиндрдің екі табаны тең дөңгелектер, ал оларды қосатын бүйір беті қисық бет болады.",
+  points:[
+   "Цилиндрдің екі табаны бар.",
+   "Табан радиусы r деп белгіленеді.",
+   "Табандар арасындағы перпендикуляр арақашықтық h — биіктік.",
+   "Тік цилиндрдің жасаушысының ұзындығы биіктігіне тең.",
+   "Цилиндрдің табандары өзара параллель."
+  ]
+ },
+ {
+  title:"8.3. Цилиндрдің бүйір бетінің ауданы",
+  fig:"cylinder",
+  text:"Тік цилиндрдің бүйір бетін жазықтыққа жайсақ, ені табан шеңберінің ұзындығына, биіктігі цилиндр биіктігіне тең тіктөртбұрыш аламыз.",
+  points:[
+   "Табан шеңберінің ұзындығы C = 2πr.",
+   "Жайманың ені 2πr.",
+   "Жайманың биіктігі h.",
+   "Бүйір бетінің ауданы: Sбүйір = 2πrh."
+  ]
+ },
+ {
+  title:"8.4. Цилиндрдің толық бетінің ауданы",
+  fig:"cylinder",
+  text:"Цилиндрдің толық беті екі табанның ауданы мен бүйір бетінің ауданының қосындысына тең.",
+  points:[
+   "Бір табанның ауданы πr².",
+   "Екі табанның ауданы 2πr².",
+   "Бүйір беті 2πrh.",
+   "Толық беті: Sтолық = 2πr² + 2πrh.",
+   "Ықшам түрі: Sтолық = 2πr(r + h)."
+  ]
+ },
+ {
+  title:"8.5. Конустың анықтамасы",
+  fig:"cone",
+  text:"Тік дөңгелек конус — табаны дөңгелек, ал барлық жасаушылары ортақ төбеде түйісетін айналу денесі.",
+  points:[
+   "Конустың бір табаны бар.",
+   "Конус төбесінен табан центріне жүргізілген кесінді — биіктік.",
+   "Төбеден табан шеңберіндегі нүктеге дейінгі кесінді — жасаушы.",
+   "Жасаушыны l әрпімен белгілейміз.",
+   "Тік конуста l² = h² + r²."
+  ]
+ },
+ {
+  title:"8.6. Конустың бүйір бетінің ауданы",
+  fig:"slant",
+  text:"Тік конустың бүйір бетінің жаймасы — радиусы жасаушыға тең дөңгелек сектор.",
+  points:[
+   "Конустың жасаушысы l деп белгіленеді.",
+   "Табан радиусы r.",
+   "Бүйір бетінің ауданы: Sбүйір = πrl.",
+   "Жасаушыны Пифагор теоремасымен табуға болады.",
+   "l = √(h² + r²)."
+  ]
+ },
+ {
+  title:"8.7. Конустың толық бетінің ауданы",
+  fig:"cone",
+  text:"Конустың толық беті оның бүйір бетінің ауданы мен бір табанының ауданының қосындысына тең.",
+  points:[
+   "Бүйір беті: πrl.",
+   "Табан ауданы: πr².",
+   "Толық беті: Sтолық = πrl + πr².",
+   "Ықшам түрі: Sтолық = πr(l + r)."
+  ]
+ },
+ {
+  title:"8.8. Сфераның бетінің ауданы",
+  fig:"sphere",
+  text:"Сфера — кеңістіктегі бір нүктеден бірдей қашықтықта орналасқан барлық нүктелер жиыны. Шар — осы сферамен шектелген дене.",
+  points:[
+   "Сфераның центрі O деп белгіленуі мүмкін.",
+   "Радиус r — центрден сфера бетіне дейінгі қашықтық.",
+   "Диаметр d = 2r.",
+   "Сфера бетінің ауданы: S = 4πr².",
+   "Радиус екі есе өссе, аудан төрт есе өседі."
+  ]
+ },
+ {
+  title:"8.9. Жарты шар және қиық конус",
+  fig:"hemisphere",
+  text:"Жарты шар — шардың центрі арқылы өтетін жазықтықпен бөлінген бөлігі. Қиық конус — конусты табанына параллель жазықтықпен кескенде алынатын дене.",
+  points:[
+   "Жарты сфераның қисық бетінің ауданы: 2πr².",
+   "Жарты шардың табанын қосқандағы толық беті: 3πr².",
+   "Қиық конустың екі табаны бар.",
+   "Тік қиық конустың бүйір беті: π(R + r)l.",
+   "R және r — табандардың радиустары, l — жасаушы."
+  ]
+ }
+];
+
+theory.forEach(t=>{
+ add("theory",t.title,`
+  <p class="lead">${t.text}</p>
+  ${picture(t.fig,t.title)}
+  ${card("Толық түсіндірме",
+   t.points.map(x=>`<p>✦ ${x}</p>`).join("")
+  )}
+  <button class="action" onclick="openBoard()">
+   ✎ Тақтада көрсету
+  </button>
+ `);
+});
+
+/* КОНСПЕКТТЕР */
+
+const topics=[
+ {
+  title:"Цилиндрдің бетінің ауданы",
+  fig:"cylinder",
+  notes:[
+   "Цилиндрдің табан радиусы r, биіктігі h.",
+   "Табан ауданы: Sтабан = πr².",
+   "Бүйір бетінің ауданы: Sбүйір = 2πrh.",
+   "Толық бетінің ауданы: Sтолық = 2πrh + 2πr².",
+   "Ықшам түрі: Sтолық = 2πr(h + r).",
+   "π ≈ 3,14."
+  ],
+  examples:[
+   ["Цилиндрдің бүйір беті",
+    "r = 5 см, h = 12 см.",
+    [
+     "Формула: Sбүйір = 2πrh.",
+     "Sбүйір = 2 × π × 5 × 12.",
+     "Sбүйір = 120π.",
+     "Жауабы: 120π см²."
+    ]],
+   ["Цилиндрдің толық беті",
+    "r = 4 см, h = 9 см.",
+    [
+     "Sбүйір = 2 × π × 4 × 9 = 72π.",
+     "Екі табанның ауданы: 2πr² = 32π.",
+     "Sтолық = 72π + 32π.",
+     "Жауабы: 104π см²."
+    ]]
+  ],
+  tasks:[
+   ["r = 7 см, h = 10 см. Бүйір бетін табыңдар.",[
+    "S = 2πrh.",
+    "S = 2 × π × 7 × 10.",
+    "Жауабы: 140π см²."
+   ]],
+   ["r = 6 см, h = 8 см. Толық бетін табыңдар.",[
+    "Sтолық = 2πr(r+h).",
+    "Sтолық = 2π × 6 × 14.",
+    "Жауабы: 168π см²."
+   ]]
+  ]
+ },
+ {
+  title:"Конустың бетінің ауданы",
+  fig:"cone",
+  notes:[
+   "Конустың радиусы r, биіктігі h.",
+   "Жасаушысы l деп белгіленеді.",
+   "Пифагор формуласы: l² = r² + h².",
+   "Бүйір беті: Sбүйір = πrl.",
+   "Толық беті: Sтолық = πrl + πr².",
+   "Ықшам түрі: Sтолық = πr(l+r)."
+  ],
+  examples:[
+   ["Конустың жасаушысын табу",
+    "r = 5 см, h = 12 см.",
+    [
+     "l² = r² + h².",
+     "l² = 25 + 144 = 169.",
+     "l = √169.",
+     "Жауабы: l = 13 см."
+    ]],
+   ["Конустың толық беті",
+    "r = 6 см, l = 10 см.",
+    [
+     "Sбүйір = π × 6 × 10 = 60π.",
+     "Sтабан = π × 6² = 36π.",
+     "Sтолық = 60π + 36π.",
+     "Жауабы: 96π см²."
+    ]]
+  ],
+  tasks:[
+   ["r = 9 см, l = 15 см. Бүйір бетінің ауданы?",[
+    "Sбүйір = πrl.",
+    "Sбүйір = π × 9 × 15.",
+    "Жауабы: 135π см²."
+   ]],
+   ["r = 8 см, h = 15 см. Жасаушыны табыңдар.",[
+    "l² = 8² + 15².",
+    "l² = 64 + 225 = 289.",
+    "Жауабы: 17 см."
+   ]]
+  ]
+ },
+ {
+  title:"Шар және сфера",
+  fig:"sphere",
+  notes:[
+   "Шар — сферамен шектелген кеңістіктік дене.",
+   "Сфера — шардың беті.",
+   "Радиус r, диаметр d = 2r.",
+   "Сфера ауданы: S = 4πr².",
+   "Жарты сфераның қисық беті: 2πr².",
+   "Жарты шардың толық беті: 3πr²."
+  ],
+  examples:[
+   ["Сфераның ауданы",
+    "r = 6 см.",
+    [
+     "S = 4πr².",
+     "S = 4 × π × 36.",
+     "Жауабы: 144π см²."
+    ]],
+   ["Диаметр арқылы аудан",
+    "d = 18 см.",
+    [
+     "r = d ÷ 2 = 9 см.",
+     "S = 4πr².",
+     "S = 4 × π × 81.",
+     "Жауабы: 324π см²."
+    ]]
+  ],
+  tasks:[
+   ["Сфера радиусы 10 см. Ауданы?",[
+    "S = 4πr².",
+    "S = 4 × π × 100.",
+    "Жауабы: 400π см²."
+   ]],
+   ["Жарты шардың радиусы 7 см. Толық беті?",[
+    "Sтолық = 3πr².",
+    "Sтолық = 3 × π × 49.",
+    "Жауабы: 147π см²."
+   ]]
+  ]
+ },
+ {
+  title:"Қиық конус және аралас есептер",
+  fig:"frustum",
+  notes:[
+   "Қиық конустың табан радиустары R және r.",
+   "Тік қиық конустың жасаушысы l.",
+   "Бүйір беті: Sбүйір = π(R+r)l.",
+   "Толық беті: Sтолық = π(R+r)l + πR² + πr².",
+   "Жасаушысы: l² = h² + (R−r)².",
+   "Есепте әр формулаға сәйкес шамаларды дұрыс таңдау керек."
+  ],
+  examples:[
+   ["Қиық конустың бүйір беті",
+    "R = 10 см, r = 4 см, l = 13 см.",
+    [
+     "Sбүйір = π(R+r)l.",
+     "Sбүйір = π × (10+4) × 13.",
+     "Жауабы: 182π см²."
+    ]],
+   ["Қиық конустың жасаушысы",
+    "R = 8 см, r = 3 см, h = 12 см.",
+    [
+     "l² = h² + (R−r)².",
+     "l² = 144 + 25 = 169.",
+     "Жауабы: l = 13 см."
+    ]]
+  ],
+  tasks:[
+   ["R = 12 см, r = 6 см, l = 10 см. Бүйір беті?",[
+    "S = π(R+r)l.",
+    "S = π × 18 × 10.",
+    "Жауабы: 180π см²."
+   ]],
+   ["R = 9 см, r = 4 см, h = 12 см. Жасаушыны табыңдар.",[
+    "l² = 12² + 5².",
+    "l² = 169.",
+    "Жауабы: 13 см."
+   ]]
+  ]
+ }
+];
+
+/* ӘР КОНСПЕКТ ҮШ БЕТТЕН */
+topics.forEach((t,i)=>{
+ const note=t.notes.map(x=>`<p>✦ ${x}</p>`).join("");
+
+ const tasks=t.tasks.map((x,j)=>solution(
+  (j+1)+"-өзіндік есеп. "+x[0],x[1]
+ )).join("");
+
+ add("notes","Конспект "+(i+1)+". "+t.title,`
+  <span class="tag">ДӘПТЕРГЕ ЖАЗЫП АЛЫҢДАР</span>
+  ${picture(t.fig,t.title)}
+  ${card("Негізгі формулалар мен ережелер",note)}
+  ${card("Өзіндік жұмыс",tasks)}
+ `);
+
+ add("notes","Конспект "+(i+1)+". Мысалдар",`
+  <p class="lead">
+   Есептің берілгенін, қажетті формуланы,
+   толық шығарылуын және жауабын дәптерге жазыңдар.
+  </p>
+  ${t.examples.map(e=>example(e[0],e[1],e[2],t.fig)).join("")}
+ `);
+
+ add("notes","Конспект "+(i+1)+". Бекіту",`
+  ${picture(t.fig,"Бекіту тапсырмасы")}
+  ${card("Қайталау",note)}
+  ${card("Екі өзіндік есеп",tasks)}
+  <button class="action" onclick="openBoard()">
+   ✎ Тақтада шығару
+  </button>
+ `);
+});
+
+/* 4 ДЕҢГЕЙЛІ ЕСЕПТЕР */
+
+const levels=[
+ ["I деңгей",
+  "Цилиндр радиусы 3 см, биіктігі 8 см. Бүйір бетінің ауданын табыңдар.",
+  [
+   "Sбүйір = 2πrh.",
+   "Sбүйір = 2 × π × 3 × 8.",
+   "Жауабы: 48π см²."
+  ],"cylinder"],
+
+ ["I деңгей",
+  "Сфера радиусы 5 см. Оның бетінің ауданын есептеңдер.",
+  [
+   "S = 4πr².",
+   "S = 4 × π × 25.",
+   "Жауабы: 100π см²."
+  ],"sphere"],
+
+ ["II деңгей",
+  "Цилиндр радиусы 7 см, биіктігі 11 см. Толық бетінің ауданы?",
+  [
+   "Sтолық = 2πr(h+r).",
+   "Sтолық = 2 × π × 7 × 18.",
+   "Жауабы: 252π см²."
+  ],"cylinder"],
+
+ ["II деңгей",
+  "Конус радиусы 9 см, жасаушысы 15 см. Толық бетінің ауданы?",
+  [
+   "Sтолық = πr(l+r).",
+   "Sтолық = π × 9 × (15+9).",
+   "Жауабы: 216π см²."
+  ],"cone"],
+
+ ["III деңгей",
+  "Конус радиусы 12 см, биіктігі 16 см. Жасаушысын және толық бетін табыңдар.",
+  [
+   "l² = 12² + 16².",
+   "l² = 144 + 256 = 400.",
+   "l = 20 см.",
+   "Sтолық = π × 12 × (20+12).",
+   "Жауабы: l = 20 см, S = 384π см²."
+  ],"slant"],
+
+ ["III деңгей",
+  "Сфера бетінің ауданы 256π см². Радиусы мен диаметрін анықтаңдар.",
+  [
+   "4πr² = 256π.",
+   "r² = 64.",
+   "r = 8 см.",
+   "d = 2r = 16 см.",
+   "Жауабы: 8 см және 16 см."
+  ],"sphere"],
+
+ ["IV деңгей",
+  "Тік қиық конустың радиустары 10 см және 4 см, биіктігі 8 см. Жасаушысын және толық бетінің ауданын есептеңдер.",
+  [
+   "l² = h² + (R−r)².",
+   "l² = 8² + 6² = 100.",
+   "l = 10 см.",
+   "Sбүйір = π(10+4) × 10 = 140π.",
+   "Sтабандар = 100π + 16π = 116π.",
+   "Жауабы: l = 10 см, Sтолық = 256π см²."
+  ],"frustum"],
+
+ ["IV деңгей",
+  "Цилиндрдің толық беті 192π см², ал радиусы 6 см. Цилиндрдің биіктігін табыңдар.",
+  [
+   "Sтолық = 2πr(h+r).",
+   "192π = 2π × 6 × (h+6).",
+   "192 = 12(h+6).",
+   "16 = h+6.",
+   "Жауабы: h = 10 см."
+  ],"cylinder"]
+];
+
+levels.forEach((t,i)=>{
+ add("tasks",t[0]+" · "+(i+1)+"-есеп",`
+  <span class="tag">4 ДЕҢГЕЙЛІ ТАПСЫРМА</span>
+
+  ${card("Есеп шарты",`<p class="lead">${t[1]}</p>`)}
+
+  ${picture(t[3],"Геометриялық сызба")}
+
+  ${card("Шығару тәртібі",`
+   <p>1. Берілген шамаларды жазыңдар.</p>
+   <p>2. Қажетті формуланы таңдаңдар.</p>
+   <p>3. Есептеу қадамдарын орындаңдар.</p>
+   <p>4. Жауаптың өлшем бірлігін тексеріңдер.</p>
+  `)}
+
+  ${solution("Толық шығарылуы",t[2])}
+
+  <button class="action" onclick="openBoard()">
+   ✎ Тақтада шығару
+  </button>
+ `);
+});
+
+/* 3 КОМАНДАЛЫҚ ОЙЫН */
+
+const questions=[
+ ["Цилиндрдің неше табаны бар?",
+  ["1","2","3","4"],1],
+
+ ["Конустың неше табаны бар?",
+  ["1","2","3","0"],0],
+
+ ["Сфераның бет ауданының формуласы?",
+  ["πr²","2πr²","4πr²","πrl"],2],
+
+ ["Цилиндрдің бүйір бетінің формуласы?",
+  ["2πrh","πrl","4πr²","πr²"],0],
+
+ ["Конустың бүйір беті?",
+  ["πr²","πrl","2πrh","4πr²"],1],
+
+ ["Диаметр радиустан неше есе үлкен?",
+  ["2","3","4","5"],0],
+
+ ["Тік конустың жасаушысы қандай әріппен белгіленеді?",
+  ["r","h","l","S"],2],
+
+ ["Цилиндр табанының ауданы?",
+  ["2πr","πr²","4πr²","πrh"],1],
+
+ ["r=3 см шардың бетінің ауданы?",
+  ["9π","18π","27π","36π"],3],
+
+ ["r=5, h=4 цилиндрдің бүйір беті?",
+  ["20π","40π","60π","80π"],1],
+
+ ["r=6, l=10 конустың бүйір беті?",
+  ["16π","36π","60π","96π"],2],
+
+ ["Конус үшін Пифагор қатынасы?",
+  ["l²=h²+r²","h=l+r","r²=l²+h²","l=hr"],0],
+
+ ["Жарты сфераның қисық беті?",
+  ["πr²","2πr²","3πr²","4πr²"],1],
+
+ ["Шар радиусы екі есе өссе, бетінің ауданы?",
+  ["2 есе","3 есе","4 есе","8 есе"],2],
+
+ ["r=4, h=6 цилиндрдің толық беті?",
+  ["40π","60π","80π","100π"],2]
+];
+
+let answers={};
+let scores=[0,0,0];
+
+for(let round=0;round<4;round++){
+ add("game","Командалық ойын · "+(round+1)+"-кезең",`
+  <span class="tag">15 СҰРАҚ · 3 КОМАНДА · +10 ҰПАЙ</span>
+
+  <div class="scoreGrid">
+   <div class="score">1-команда<b id="team0">0</b></div>
+   <div class="score">2-команда<b id="team1">0</b></div>
+   <div class="score">3-команда<b id="team2">0</b></div>
+  </div>
+
+  <div id="gameQuestions"></div>
+
+  <button class="action" onclick="resetGame()">
+   ↻ Қайта бастау
+  </button>
+ `);
+}
+
+/* ҮЙ ЖҰМЫСЫ */
+
+add("homework","Үй жұмысы · Екі есеп",`
+ ${card("1-есеп. Цилиндр",`
+  <p>
+   Цилиндрдің табан радиусы
+   <strong>9 см</strong>, биіктігі
+   <strong>14 см</strong>.
+  </p>
+  <p>
+   Оның бүйір бетінің ауданын және
+   толық бетінің ауданын есептеңдер.
+  </p>
+ `)}
+
+ ${card("2-есеп. Конус",`
+  <p>
+   Конустың табан радиусы
+   <strong>15 см</strong>, биіктігі
+   <strong>20 см</strong>.
+  </p>
+  <p>
+   Алдымен жасаушысын табыңдар.
+   Содан кейін бүйір және толық
+   бетінің ауданын есептеңдер.
+  </p>
+ `)}
+`);
+
+add("homework","Үй жұмысы · Сызба және зерттеу",`
+ ${picture("sphere","Сфера")}
+
+ ${card("3-тапсырма",`
+  <p>
+   Цилиндрдің, конустың және шардың
+   сызбасын салыңдар.
+  </p>
+  <p>
+   Әрқайсысының радиусын, биіктігін
+   немесе жасаушысын белгілеңдер.
+  </p>
+ `)}
+
+ ${card("4-тапсырма",`
+  <p>
+   Айналу денелеріне ұқсас күнделікті
+   өмірдегі үш затты атаңдар.
+   Олардың пішіндерін салыстырып,
+   ерекшеліктерін 5–6 сөйлеммен жазыңдар.
+  </p>
+ `)}
+`);
+
+/* ҚОРЫТЫНДЫ */
+
+add("finish","§8. Айналу денелері — қорытынды",`
+ <p class="lead">
+  Біз цилиндрді, конусты, шарды,
+  жарты шарды және қиық конусты
+  қарастырдық. Олардың бетінің
+  аудандарын табуды үйрендік.
+ </p>
+
+ <div class="grid2">
+  ${picture("cylinder","Цилиндр")}
+  ${picture("cone","Конус")}
+  ${picture("sphere","Сфера")}
+  ${picture("frustum","Қиық конус")}
+ </div>
+
+ <div class="formula">S<sub>цилиндр</sub> = 2πr(h+r)</div>
+ <div class="formula">S<sub>конус</sub> = πr(l+r)</div>
+ <div class="formula">S<sub>сфера</sub> = 4πr²</div>
+
+ ${card("Қайталау сұрақтары",`
+  <p>1. Айналу денесі дегеніміз не?</p>
+  <p>2. Цилиндрдің толық беті қалай табылады?</p>
+  <p>3. Конустың жасаушысы дегеніміз не?</p>
+  <p>4. Шар мен сфераның айырмашылығы қандай?</p>
+  <p>5. Қиық конустың бүйір бетінің формуласы қандай?</p>
+ `)}
+
+ <button class="action" onclick="goTo(0)">
+  Бастапқы бетке қайту
+ </button>
+`);
+
+/* ==========================================
+   3. НАВИГАЦИЯ
+========================================== */
+
+const sections=[
+ ["intro","🏠 Кіріспе"],
+ ["theory","📖 Түсіндірме"],
+ ["notes","📝 Конспект"],
+ ["tasks","📐 4 деңгей"],
+ ["game","🏆 Командалық ойын"],
+ ["homework","📚 Үй жұмысы"],
+ ["finish","✅ Қорытынды"]
+];
+
+let currentSlide=0;
+
+function createSidebar(){
+ const root=document.getElementById("sectionButtons");
+
+ sections.forEach(([id,title])=>{
+  const b=document.createElement("button");
+
+  b.className="sideBtn";
+  b.dataset.section=id;
+  b.textContent=title;
+
+  b.onclick=()=>{
+   const i=slides.findIndex(s=>s.section===id);
+   if(i>=0)goTo(i);
+  };
+
+  root.appendChild(b);
+ });
+}
+
+function goTo(index){
+ currentSlide=Math.max(
+  0,
+  Math.min(slides.length-1,index)
+ );
+
+ const s=slides[currentSlide];
+ const label=sections.find(x=>x[0]===s.section)[1];
+
+ document.getElementById("slideContent").innerHTML=`
+  <div class="eyebrow">${label}</div>
+  <h1>${s.title}</h1>
+  ${s.html}
+ `;
+
+ document.getElementById("counter").textContent=
+  (currentSlide+1)+" / "+slides.length;
+
+ document.getElementById("prevBtn").disabled=
+  currentSlide===0;
+
+ document.getElementById("nextBtn").disabled=
+  currentSlide===slides.length-1;
+
+ document.querySelectorAll(".sideBtn").forEach(b=>{
+  b.classList.toggle(
+   "active",
+   b.dataset.section===s.section
+  );
+ });
+
+ document.getElementById("slideView").scrollTop=0;
+
+ if(s.section==="game"){
+  const round=slides.slice(0,currentSlide+1)
+   .filter(x=>x.section==="game").length-1;
+
+  renderGame(round);
+ }
+}
+
+function previousSlide(){goTo(currentSlide-1)}
+function nextSlide(){goTo(currentSlide+1)}
+
+document.addEventListener("keydown",e=>{
+ if(document.getElementById("whiteboard").classList.contains("open"))return;
+ if(e.target.matches("input,textarea"))return;
+
+ if(e.key==="ArrowLeft")previousSlide();
+ if(e.key==="ArrowRight")nextSlide();
+});
+
+function renderGame(round){
+ const root=document.getElementById("gameQuestions");
+
+ if(!root)return;
+
+ root.innerHTML="";
+
+ for(let i=round*4;i<Math.min((round+1)*4,questions.length);i++){
+  const q=questions[i];
+  const team=i%3;
+
+  const panel=document.createElement("div");
+  panel.className="card";
+
+  const h=document.createElement("h3");
+  h.textContent=(i+1)+"-сұрақ · "+(team+1)+"-команда";
+
+  const p=document.createElement("p");
+  p.textContent=q[0];
+
+  panel.append(h,p);
+
+  q[1].forEach((option,j)=>{
+   const b=document.createElement("button");
+
+   b.className="choice";
+   b.textContent="ABCD"[j]+") "+option;
+
+   if(answers[i]!==undefined){
+    b.disabled=true;
+
+    if(j===q[2])b.classList.add("correct");
+    else if(j===answers[i])b.classList.add("wrong");
+   }
+
+   b.onclick=()=>{
+    if(answers[i]!==undefined)return;
+
+    answers[i]=j;
+
+    if(j===q[2]){
+     scores[team]+=10;
+    }
+
+    renderGame(round);
+   };
+
+   panel.appendChild(b);
+  });
+
+  if(answers[i]!==undefined){
+   const msg=document.createElement("p");
+
+   msg.textContent=answers[i]===q[2]
+    ?"Дұрыс! +10 ұпай."
+    :"Дұрыс жауап: "+q[1][q[2]];
+
+   panel.appendChild(msg);
+  }
+
+  root.appendChild(panel);
+ }
+
+ scores.forEach((s,i)=>{
+  document.getElementById("team"+i).textContent=s;
+ });
+
+ document.getElementById("stars").textContent=
+  scores.reduce((a,b)=>a+b,0);
+}
+
+function resetGame(){
+ answers={};
+ scores=[0,0,0];
+
+ document.getElementById("stars").textContent=0;
+ goTo(currentSlide);
+}
+
+/* ==========================================
+   4. УАҚЫТ ЖӘНЕ ТАЙМЕР
+========================================== */
+
+function updateClock(){
+ document.getElementById("clock").textContent=
+  new Intl.DateTimeFormat("kk-KZ",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hour12:false
+  }).format(new Date());
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+let remaining=4800;
+let timerId=null;
+let deadline=0;
+
+function formatTime(s){
+ return String(Math.floor(s/60)).padStart(2,"0")
+  +":"+String(s%60).padStart(2,"0");
+}
+
+function paintTimer(){
+ document.getElementById("remaining").textContent=
+  formatTime(remaining);
+
+ document.getElementById("elapsed").textContent=
+  formatTime(4800-remaining);
+}
+
+function startTimer(){
+ if(timerId||remaining===0)return;
+
+ deadline=Date.now()+remaining*1000;
+
+ timerId=setInterval(()=>{
+  remaining=Math.max(
+   0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+
+  paintTimer();
+
+  if(remaining===0){
+   pauseTimer();
+   alert("80 минут аяқталды!");
+  }
+ },250);
+}
+
+function pauseTimer(){
+ if(timerId){
+  remaining=Math.max(
+   0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+ }
+
+ clearInterval(timerId);
+ timerId=null;
+ paintTimer();
+}
+
+function resetTimer(){
+ pauseTimer();
+ remaining=4800;
+ paintTimer();
+}
+
+function toggleFullscreen(){
+ if(document.fullscreenElement){
+  document.exitFullscreen?.();
+ }else{
+  document.documentElement.requestFullscreen?.();
+ }
+}
+
+/* ==========================================
+   5. КАЛЬКУЛЯТОР
+========================================== */
+
+const calculator=document.getElementById("calculator");
+const calcInput=document.getElementById("calcInput");
+
+function openCalc(scientific){
+ calculator.classList.add("open");
+
+ document.getElementById("calcTitle").textContent=
+  scientific?"Ғылыми калькулятор · DEG":"Калькулятор";
+
+ const keys=scientific
+ ?[
+  "C","⌫","(",")","÷","π",
+  "sin","cos","tan","cot","√",
+  "7","8","9","^","×",
+  "4","5","6",".","−",
+  "1","2","3","0","+",
+  "00","="
+ ]
+ :[
+  "C","⌫","(",")","÷","π",
+  "7","8","9","×","−",
+  "4","5","6",".","+",
+  "1","2","3","0","="
+ ];
+
+ const root=document.getElementById("calcKeys");
+ root.innerHTML="";
+
+ keys.forEach(key=>{
+  const b=document.createElement("button");
+
+  b.textContent=key;
+  b.onclick=()=>calcPress(key);
+
+  root.appendChild(b);
+ });
+}
+
+function closeCalc(){
+ calculator.classList.remove("open");
+}
+
+function calcPress(key){
+ if(key==="C"){
+  calcInput.value="";
+  return;
+ }
+
+ if(key==="⌫"){
+  calcInput.value=calcInput.value.slice(0,-1);
+  return;
+ }
+
+ if(key==="="){
+  try{
+   const result=calculate(calcInput.value);
+
+   if(!Number.isFinite(result))throw Error();
+
+   calcInput.value=String(
+    Number(result.toPrecision(12))
+   );
+  }catch{
+   calcInput.value="Қате";
+  }
+
+  return;
+ }
+
+ const map={
+  "×":"*",
+  "÷":"/",
+  "−":"-",
+  "π":"pi",
+  "√":"sqrt(",
+  "sin":"sin(",
+  "cos":"cos(",
+  "tan":"tan(",
+  "cot":"cot("
+ };
+
+ calcInput.value+=map[key]??key;
+}
+
+function calculate(expr){
+ const cleaned=expr.replace(/\s/g,"");
+
+ const tokens=cleaned.match(
+  /(?:\d+(?:\.\d*)?|\.\d+)|[a-z]+|[()+\-*/^]/gi
+ )||[];
+
+ if(tokens.join("")!==cleaned)throw Error();
+
+ let i=0;
+
+ function atom(){
+  const token=tokens[i++];
+
+  if(token==="("){
+   const v=addition();
+
+   if(tokens[i++]!==")")throw Error();
+
+   return v;
+  }
+
+  if(token==="pi")return Math.PI;
+
+  const functions={
+   sin:x=>Math.sin(x*Math.PI/180),
+   cos:x=>Math.cos(x*Math.PI/180),
+   tan:x=>Math.tan(x*Math.PI/180),
+   cot:x=>1/Math.tan(x*Math.PI/180),
+   sqrt:x=>Math.sqrt(x)
+  };
+
+  if(functions[token]){
+   if(tokens[i++]!=="(")throw Error();
+
+   const value=addition();
+
+   if(tokens[i++]!==")")throw Error();
+
+   return functions[token](value);
+  }
+
+  if(token===undefined||!Number.isFinite(Number(token)))
+   throw Error();
+
+  return Number(token);
+ }
+
+ function power(){
+  if(tokens[i]==="+"){
+   i++;
+   return power();
+  }
+
+  if(tokens[i]==="-"){
+   i++;
+   return -power();
+  }
+
+  let value=atom();
+
+  if(tokens[i]==="^"){
+   i++;
+   value=value**power();
+  }
+
+  return value;
+ }
+
+ function multiply(){
+  let value=power();
+
+  while(["*","/"].includes(tokens[i])){
+   const op=tokens[i++];
+   const next=power();
+
+   value=op==="*"?value*next:value/next;
+  }
+
+  return value;
+ }
+
+ function addition(){
+  let value=multiply();
+
+  while(["+","-"].includes(tokens[i])){
+   const op=tokens[i++];
+   const next=multiply();
+
+   value=op==="+"?value+next:value-next;
+  }
+
+  return value;
+ }
+
+ const result=addition();
+
+ if(i!==tokens.length)throw Error();
+
+ return result;
+}
+
+/* КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ */
+const calcHandle=document.getElementById("calcHandle");
+let calcDrag=null;
+
+calcHandle.addEventListener("pointerdown",e=>{
+ if(e.target.closest("button"))return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calcDrag={
+  sx:e.clientX,
+  sy:e.clientY,
+  x:r.left,
+  y:r.top
+ };
+
+ calcHandle.setPointerCapture(e.pointerId);
+});
+
+calcHandle.addEventListener("pointermove",e=>{
+ if(!calcDrag)return;
+
+ calculator.style.left=Math.max(0,Math.min(
+  innerWidth-calculator.offsetWidth,
+  calcDrag.x+e.clientX-calcDrag.sx
+ ))+"px";
+
+ calculator.style.top=Math.max(0,Math.min(
+  innerHeight-calculator.offsetHeight,
+  calcDrag.y+e.clientY-calcDrag.sy
+ ))+"px";
+});
+
+calcHandle.addEventListener("pointerup",()=>calcDrag=null);
+calcHandle.addEventListener("pointercancel",()=>calcDrag=null);
+
+/* ==========================================
+   6. СЕНСОРЛЫҚ ТАҚТА
+========================================== */
+
+const board=document.getElementById("whiteboard");
+const boardArea=document.getElementById("boardArea");
+const canvas=document.getElementById("boardCanvas");
+const ctx=canvas.getContext("2d");
+
+const cursor=document.getElementById("eraserCursor");
+const colorInput=document.getElementById("boardColor");
+const widthInput=document.getElementById("boardWidth");
+
+const ink=document.createElement("canvas");
+const inkCtx=ink.getContext("2d");
+
+let canvasWidth=1;
+let canvasHeight=1;
+let dpr=1;
+
+let zoom=1;
+let panX=0;
+let panY=0;
+
+let boardTool="pen";
+let showGrid=false;
+let currentStroke=null;
+let activePointer=null;
+let draggingView=null;
+let anglePoints=[];
+
+let pages=[{objects:[]}];
+let pageIndex=0;
+let objects=pages[0].objects;
+
+let history=[];
+let redoHistory=[];
+
+const imageCache=new Map();
+
+try{
+ const stored=JSON.parse(
+  localStorage.getItem("mat8_board_v1")||"null"
+ );
+
+ if(Array.isArray(stored)&&stored.length&&
+    stored.every(p=>Array.isArray(p.objects))){
+  pages=stored;
+  objects=pages[0].objects;
+ }
+}catch(e){
+ console.warn(e);
+}
+
+function savePages(){
+ pages[pageIndex].objects=objects;
+
+ try{
+  localStorage.setItem(
+   "mat8_board_v1",
+   JSON.stringify(pages)
+  );
+ }catch(e){
+  console.warn(e);
+ }
+}
+
+function resetHistory(){
+ history=[JSON.stringify(objects)];
+ redoHistory=[];
+}
+
+function commit(){
+ history.push(JSON.stringify(objects));
+
+ if(history.length>50)history.shift();
+
+ redoHistory=[];
+ savePages();
+}
+
+function undoBoard(){
+ if(history.length<2)return;
+
+ redoHistory.push(history.pop());
+ objects=JSON.parse(history[history.length-1]);
+
+ savePages();
+ renderBoard();
+}
+
+function redoBoard(){
+ if(!redoHistory.length)return;
+
+ const state=redoHistory.pop();
+
+ history.push(state);
+ objects=JSON.parse(state);
+
+ savePages();
+ renderBoard();
+}
+
+function updatePages(){
+ document.getElementById("pageCount").textContent=
+  (pageIndex+1)+" / "+pages.length;
+
+ const root=document.getElementById("pagesList");
+ root.innerHTML="";
+
+ pages.forEach((p,i)=>{
+  const b=document.createElement("button");
+
+  b.textContent=(i+1)+"-бет"+(i===pageIndex?" ✓":"");
+
+  if(i===pageIndex)b.className="active";
+
+  b.onclick=()=>loadPage(i);
+
+  root.appendChild(b);
+ });
+}
+
+function loadPage(i){
+ if(i<0||i>=pages.length)return;
+
+ savePages();
+
+ pageIndex=i;
+ objects=pages[i].objects;
+ currentStroke=null;
+
+ resetHistory();
+ updatePages();
+ renderBoard();
+}
+
+function addBoardPage(){
+ savePages();
+
+ pages.push({objects:[]});
+ loadPage(pages.length-1);
+ savePages();
+}
+
+function prevBoardPage(){
+ loadPage(pageIndex-1);
+}
+
+function nextBoardPage(){
+ loadPage(pageIndex+1);
+}
+
+function togglePages(){
+ document.getElementById("pagesPanel")
+  .classList.toggle("open");
+
+ updatePages();
+}
+
+function deleteBoardPage(){
+ if(pages.length===1){
+  alert("Соңғы бетті өшіруге болмайды.");
+  return;
+ }
+
+ if(!confirm("Осы бетті өшіреміз бе?"))return;
+
+ pages.splice(pageIndex,1);
+
+ pageIndex=Math.min(pageIndex,pages.length-1);
+ objects=pages[pageIndex].objects;
+
+ resetHistory();
+ savePages();
+ updatePages();
+ renderBoard();
+}
+
+function openBoard(){
+ board.classList.add("open");
+ resizeCanvas();
+ updatePages();
+}
+
+function closeBoard(){
+ savePages();
+ hideEraser();
+ board.classList.remove("open");
+}
+
+function resizeCanvas(){
+ const r=boardArea.getBoundingClientRect();
+
+ canvasWidth=Math.max(1,r.width);
+ canvasHeight=Math.max(1,r.height);
+ dpr=Math.min(devicePixelRatio||1,2);
+
+ canvas.width=Math.round(canvasWidth*dpr);
+ canvas.height=Math.round(canvasHeight*dpr);
+
+ ink.width=canvas.width;
+ ink.height=canvas.height;
+
+ renderBoard();
+}
+
+window.addEventListener("resize",()=>{
+ if(board.classList.contains("open")){
+  resizeCanvas();
+ }
+});
+
+function screenPoint(e){
+ const r=canvas.getBoundingClientRect();
+
+ return{
+  x:e.clientX-r.left,
+  y:e.clientY-r.top
+ };
+}
+
+function worldPoint(p){
+ return{
+  x:(p.x-panX)/zoom,
+  y:(p.y-panY)/zoom
+ };
+}
+
+function updateCursorSize(){
+ const size=Number(widthInput.value)*6*zoom;
+
+ cursor.style.width=size+"px";
+ cursor.style.height=size+"px";
+}
+
+function showEraser(e){
+ if(boardTool!=="eraser")return;
+
+ const p=screenPoint(e);
+
+ cursor.style.left=p.x+"px";
+ cursor.style.top=p.y+"px";
+
+ updateCursorSize();
+ cursor.style.display="block";
+}
+
+function hideEraser(){
+ cursor.style.display="none";
+}
+
+widthInput.addEventListener("input",updateCursorSize);
+
+function selectTool(name){
+ boardTool=name;
+ anglePoints=[];
+
+ document.querySelectorAll("[data-tool]").forEach(b=>{
+  b.classList.toggle(
+   "active",
+   b.dataset.tool===name
+  );
+ });
+
+ boardArea.classList.toggle("eraseMode",name==="eraser");
+
+ canvas.style.cursor=
+  name==="hand"?"grab":name==="eraser"?"none":"crosshair";
+
+ hideEraser();
+ updateStatus();
+}
+
+function updateStatus(){
+ const percent=Math.round(zoom*100)+"%";
+
+ document.getElementById("zoomCount").textContent=percent;
+
+ document.getElementById("boardStatus").textContent=
+  boardTool==="eraser"
+   ?"Өшіргіш · толық өшіру · "+percent
+   :boardTool+" · "+percent;
+}
+
+function setZoom(value,x=canvasWidth/2,y=canvasHeight/2){
+ value=Math.max(.25,Math.min(3,value));
+
+ const wx=(x-panX)/zoom;
+ const wy=(y-panY)/zoom;
+
+ zoom=value;
+
+ panX=x-wx*zoom;
+ panY=y-wy*zoom;
+
+ updateStatus();
+ updateCursorSize();
+ renderBoard();
+}
+
+function zoomBoard(factor){
+ setZoom(zoom*factor);
+}
+
+function resetBoardView(){
+ zoom=1;
+ panX=0;
+ panY=0;
+
+ updateStatus();
+ renderBoard();
+}
+
+function toggleGrid(){
+ showGrid=!showGrid;
+ renderBoard();
+}
+
+canvas.addEventListener("wheel",e=>{
+ e.preventDefault();
+
+ const p=screenPoint(e);
+
+ setZoom(
+  zoom*(e.deltaY<0?1.1:1/1.1),
+  p.x,p.y
+ );
+},{passive:false});
+
+/* ==========================================
+   7. ЖЫЛЖЫМАЛЫ ГЕОМЕТРИЯ ҚҰРАЛДАРЫ
+========================================== */
+
+const instruments={
+ ruler:{
+  x:330,y:155,w:420,h:90,
+  scale:1,rot:0,visible:false
+ },
+ protractor:{
+  x:420,y:270,w:380,h:210,
+  scale:1,rot:0,visible:false
+ },
+ square:{
+  x:390,y:270,w:290,h:290,
+  scale:1,rot:0,visible:false
+ }
+};
+
+function updateInstrument(id){
+ const t=instruments[id];
+ const el=document.getElementById(id);
+
+ el.classList.toggle("visible",t.visible);
+
+ el.style.left=t.x+"px";
+ el.style.top=t.y+"px";
+
+ el.style.setProperty("--rot",t.rot+"deg");
+ el.style.setProperty("--scale",t.scale);
+}
+
+function toggleInstrument(id){
+ instruments[id].visible=!instruments[id].visible;
+ updateInstrument(id);
+}
+
+function hideInstrument(id){
+ instruments[id].visible=false;
+ updateInstrument(id);
+}
+
+function resizeInstrument(id,factor){
+ const t=instruments[id];
+
+ t.scale=Math.max(.35,Math.min(3,t.scale*factor));
+
+ updateInstrument(id);
+}
+
+function rotateInstrument(id,angle){
+ instruments[id].rot+=angle;
+ updateInstrument(id);
+}
+
+Object.entries(instruments).forEach(([id,t])=>{
+ const handle=document.querySelector("#"+id+" .drag");
+
+ let drag=null;
+
+ handle.addEventListener("pointerdown",e=>{
+  e.preventDefault();
+  e.stopPropagation();
+
+  drag={
+   sx:e.clientX,
+   sy:e.clientY,
+   x:t.x,
+   y:t.y
+  };
+
+  handle.setPointerCapture(e.pointerId);
+ });
+
+ handle.addEventListener("pointermove",e=>{
+  if(!drag)return;
+
+  t.x=drag.x+e.clientX-drag.sx;
+  t.y=drag.y+e.clientY-drag.sy;
+
+  updateInstrument(id);
+ });
+
+ handle.addEventListener("pointerup",()=>drag=null);
+ handle.addEventListener("pointercancel",()=>drag=null);
+
+ updateInstrument(id);
+});
+
+const NS="http://www.w3.org/2000/svg";
+
+function svgEl(tag,attrs,text){
+ const el=document.createElementNS(NS,tag);
+
+ Object.entries(attrs).forEach(([k,v])=>{
+  el.setAttribute(k,v);
+ });
+
+ if(text!==undefined)el.textContent=text;
+
+ return el;
+}
+
+const rulerSVG=document.getElementById("rulerSVG");
+
+rulerSVG.appendChild(svgEl("rect",{
+ x:2,y:8,width:416,height:75,rx:6,
+ fill:"#f0ca79",
+ "fill-opacity":".85",
+ stroke:"#b58c43",
+ "stroke-width":2
+}));
+
+for(let i=0;i<=40;i++){
+ const x=10+i*10;
+ const big=i%5===0;
+
+ rulerSVG.appendChild(svgEl("line",{
+  x1:x,y1:10,
+  x2:x,y2:big?42:26,
+  stroke:"#604821",
+  "stroke-width":big?2:1
+ }));
+
+ if(big){
+  rulerSVG.appendChild(svgEl("text",{
+   x:x-4,y:62,
+   fill:"#604821",
+   "font-size":12
+  },String(i/5)));
+ }
+}
+
+const proSVG=document.getElementById("protractorSVG");
+
+proSVG.appendChild(svgEl("path",{
+ d:"M20 195 A170 170 0 0 1 360 195 L20 195 Z",
+ fill:"#90c9ed",
+ "fill-opacity":".48",
+ stroke:"#287eac",
+ "stroke-width":3
+}));
+
+for(let d=0;d<=180;d+=5){
+ const a=Math.PI-d*Math.PI/180;
+ const r=d%10===0?140:153;
+
+ proSVG.appendChild(svgEl("line",{
+  x1:190+r*Math.cos(a),
+  y1:195-r*Math.sin(a),
+  x2:190+168*Math.cos(a),
+  y2:195-168*Math.sin(a),
+  stroke:"#286d95",
+  "stroke-width":d%10===0?2:1
+ }));
+
+ if(d%30===0){
+  proSVG.appendChild(svgEl("text",{
+   x:190+116*Math.cos(a),
+   y:195-116*Math.sin(a),
+   "text-anchor":"middle",
+   fill:"#18587b",
+   "font-size":12
+  },String(d)));
+ }
+}
+
+/* ==========================================
+   8. CANVAS — СЫЗУ ЖӘНЕ ӨШІРУ
+========================================== */
+
+function getImage(src){
+ if(imageCache.has(src))return imageCache.get(src);
+
+ const im=new Image();
+
+ imageCache.set(src,im);
+ im.onload=renderBoard;
+ im.src=src;
+
+ return im;
+}
+
+function paintObject(c,o){
+ c.save();
+
+ c.strokeStyle=o.color||"#1979cc";
+ c.fillStyle=o.color||"#1979cc";
+
+ c.lineWidth=o.size||4;
+ c.lineCap="round";
+ c.lineJoin="round";
+
+ if(["pen","highlighter","eraser"].includes(o.type)){
+  if(o.type==="highlighter"){
+   c.globalAlpha=.28;
+   c.lineWidth=(o.size||4)*4;
+  }
+
+  if(o.type==="eraser"){
+   c.globalCompositeOperation="destination-out";
+   c.globalAlpha=1;
+   c.lineWidth=(o.size||4)*6;
+  }
+
+  const pts=o.points||[];
+
+  if(pts.length){
+   c.beginPath();
+
+   if(pts.length===1){
+    const radius=c.lineWidth/2;
+    c.arc(pts[0].x,pts[0].y,radius,0,Math.PI*2);
+    c.fillStyle=o.type==="eraser"?"#000":o.color;
+    c.fill();
+   }else{
+    c.moveTo(pts[0].x,pts[0].y);
+
+    pts.slice(1).forEach(p=>{
+     c.lineTo(p.x,p.y);
+    });
+
+    c.stroke();
+   }
+  }
+ }
+
+ if(o.type==="text"){
+  c.font="700 30px Manrope,Arial";
+  c.textBaseline="top";
+
+  (o.text||"").split("\n").forEach((line,i)=>{
+   c.fillText(line,o.x,o.y+i*38);
+  });
+ }
+
+ if(["line","arrow"].includes(o.type)){
+  c.beginPath();
+  c.moveTo(o.x1,o.y1);
+  c.lineTo(o.x2,o.y2);
+  c.stroke();
+
+  if(o.type==="arrow"){
+   const a=Math.atan2(o.y2-o.y1,o.x2-o.x1);
+
+   [-.5,.5].forEach(d=>{
+    c.beginPath();
+    c.moveTo(o.x2,o.y2);
+    c.lineTo(
+     o.x2-18*Math.cos(a+d),
+     o.y2-18*Math.sin(a+d)
+    );
+    c.stroke();
+   });
+  }
+ }
+
+ if(o.type==="rect"){
+  c.strokeRect(
+   o.x1,o.y1,
+   o.x2-o.x1,
+   o.y2-o.y1
+  );
+ }
+
+ if(o.type==="circle"){
+  c.beginPath();
+
+  c.ellipse(
+   (o.x1+o.x2)/2,
+   (o.y1+o.y2)/2,
+   Math.max(.1,Math.abs(o.x2-o.x1)/2),
+   Math.max(.1,Math.abs(o.y2-o.y1)/2),
+   0,0,Math.PI*2
+  );
+
+  c.stroke();
+ }
+
+ if(o.type==="compass"){
+  c.beginPath();
+
+  c.arc(
+   o.x1,o.y1,
+   Math.hypot(o.x2-o.x1,o.y2-o.y1),
+   0,Math.PI*2
+  );
+
+  c.stroke();
+ }
+
+ if(o.type==="triangle"){
+  c.beginPath();
+  c.moveTo((o.x1+o.x2)/2,o.y1);
+  c.lineTo(o.x2,o.y2);
+  c.lineTo(o.x1,o.y2);
+  c.closePath();
+  c.stroke();
+ }
+
+ if(o.type==="table"){
+  for(let i=0;i<=4;i++){
+   const x=o.x1+(o.x2-o.x1)*i/4;
+   const y=o.y1+(o.y2-o.y1)*i/4;
+
+   c.beginPath();
+
+   c.moveTo(x,o.y1);
+   c.lineTo(x,o.y2);
+
+   c.moveTo(o.x1,y);
+   c.lineTo(o.x2,y);
+
+   c.stroke();
+  }
+ }
+
+ if(o.type==="angle"){
+  const a=o.a,b=o.b,d=o.d;
+
+  c.beginPath();
+  c.moveTo(a.x,a.y);
+  c.lineTo(b.x,b.y);
+  c.lineTo(d.x,d.y);
+  c.stroke();
+
+  const ux=a.x-b.x;
+  const uy=a.y-b.y;
+  const vx=d.x-b.x;
+  const vy=d.y-b.y;
+
+  const den=Math.hypot(ux,uy)*Math.hypot(vx,vy);
+
+  if(den){
+   const degrees=Math.acos(
+    Math.max(-1,Math.min(1,(ux*vx+uy*vy)/den))
+   )*180/Math.PI;
+
+   c.font="700 22px Arial";
+
+   c.fillText(
+    degrees.toFixed(1)+"°",
+    b.x+12,b.y-15
+   );
+  }
+ }
+
+ if(o.type==="image"){
+  const im=getImage(o.src);
+
+  if(im.complete&&im.naturalWidth){
+   c.drawImage(im,o.x,o.y,o.w,o.h);
+  }
+ }
+
+ c.restore();
+}
+
+function drawGrid(){
+ if(!showGrid)return;
+
+ const step=50*zoom;
+
+ if(step<8)return;
+
+ const sx=((panX%step)+step)%step;
+ const sy=((panY%step)+step)%step;
+
+ ctx.save();
+ ctx.beginPath();
+
+ ctx.strokeStyle="#e4edf5";
+ ctx.lineWidth=1;
+
+ for(let x=sx;x<canvasWidth;x+=step){
+  ctx.moveTo(x,0);
+  ctx.lineTo(x,canvasHeight);
+ }
+
+ for(let y=sy;y<canvasHeight;y+=step){
+  ctx.moveTo(0,y);
+  ctx.lineTo(canvasWidth,y);
+ }
+
+ ctx.stroke();
+ ctx.restore();
+}
+
+function renderBoard(){
+ ctx.setTransform(dpr,0,0,dpr,0,0);
+ ctx.clearRect(0,0,canvasWidth,canvasHeight);
+
+ ctx.fillStyle="white";
+ ctx.fillRect(0,0,canvasWidth,canvasHeight);
+
+ drawGrid();
+
+ inkCtx.setTransform(1,0,0,1,0,0);
+ inkCtx.clearRect(0,0,ink.width,ink.height);
+
+ inkCtx.setTransform(dpr,0,0,dpr,0,0);
+ inkCtx.translate(panX,panY);
+ inkCtx.scale(zoom,zoom);
+
+ objects.forEach(o=>paintObject(inkCtx,o));
+
+ if(currentStroke){
+  paintObject(inkCtx,currentStroke);
+ }
+
+ ctx.drawImage(ink,0,0,canvasWidth,canvasHeight);
+}
+
+/* ==========================================
+   9. САУСАҚ ЖӘНЕ ИНТЕРАКТИВТІ ҚАЛАМ
+========================================== */
+
+function startDrawing(e){
+ if(activePointer!==null)return;
+ if(e.button!==undefined&&e.button!==0)return;
+
+ e.preventDefault();
+
+ const s=screenPoint(e);
+ const p=worldPoint(s);
+
+ if(boardTool==="text"){
+  const value=prompt("Мәтінді енгізіңіз:");
+
+  if(value){
+   objects.push({
+    type:"text",
+    text:value,
+    x:p.x,
+    y:p.y,
+    color:colorInput.value
+   });
+
+   commit();
+   renderBoard();
+  }
+
+  return;
+ }
+
+ if(boardTool==="angle"){
+  anglePoints.push(p);
+
+  if(anglePoints.length===3){
+   objects.push({
+    type:"angle",
+    a:anglePoints[0],
+    b:anglePoints[1],
+    d:anglePoints[2],
+    color:colorInput.value,
+    size:Number(widthInput.value)
+   });
+
+   anglePoints=[];
+   commit();
+   renderBoard();
+  }
+
+  return;
+ }
+
+ activePointer=e.pointerId;
+ canvas.setPointerCapture(e.pointerId);
+
+ if(boardTool==="hand"){
+  draggingView={
+   sx:s.x,
+   sy:s.y,
+   x:panX,
+   y:panY
+  };
+
+  return;
+ }
+
+ if(boardTool==="eraser"){
+  showEraser(e);
+ }
+
+ const size=Number(widthInput.value);
+ const color=colorInput.value;
+
+ if(["pen","highlighter","eraser"].includes(boardTool)){
+  currentStroke={
+   type:boardTool,
+   points:[p],
+   size,color
+  };
+ }else{
+  currentStroke={
+   type:boardTool,
+   x1:p.x,y1:p.y,
+   x2:p.x,y2:p.y,
+   size,color
+  };
+ }
+
+ renderBoard();
+}
+
+function moveDrawing(e){
+ if(boardTool==="eraser"&&
+   (e.pointerType==="mouse"||e.pointerId===activePointer)){
+  showEraser(e);
+ }
+
+ if(e.pointerId!==activePointer)return;
+
+ e.preventDefault();
+
+ const s=screenPoint(e);
+ const p=worldPoint(s);
+
+ if(draggingView){
+  panX=draggingView.x+s.x-draggingView.sx;
+  panY=draggingView.y+s.y-draggingView.sy;
+
+  renderBoard();
+  return;
+ }
+
+ if(!currentStroke)return;
+
+ if(["pen","highlighter","eraser"].includes(currentStroke.type)){
+  const pts=currentStroke.points;
+  const last=pts[pts.length-1];
+
+  if(Math.hypot(p.x-last.x,p.y-last.y)>.3){
+   pts.push(p);
+  }
+ }else{
+  currentStroke.x2=p.x;
+  currentStroke.y2=p.y;
+ }
+
+ renderBoard();
+}
+
+function finishDrawing(e){
+ if(e.pointerId!==activePointer)return;
+
+ if(currentStroke){
+  objects.push(currentStroke);
+  commit();
+ }
+
+ currentStroke=null;
+ draggingView=null;
+ activePointer=null;
+
+ if(e.pointerType!=="mouse"){
+  hideEraser();
+ }
+
+ renderBoard();
+}
+
+canvas.addEventListener("pointerdown",startDrawing);
+canvas.addEventListener("pointermove",moveDrawing);
+canvas.addEventListener("pointerup",finishDrawing);
+
+canvas.addEventListener("pointercancel",e=>{
+ finishDrawing(e);
+ hideEraser();
+});
+
+canvas.addEventListener("pointerleave",e=>{
+ if(e.pointerType==="mouse"&&activePointer===null){
+  hideEraser();
+ }
+});
+
+function clearBoard(){
+ if(!confirm("Осы бетті тазалаймыз ба?"))return;
+
+ objects=[];
+ commit();
+ renderBoard();
+}
+
+document.getElementById("boardFile")
+ .addEventListener("change",e=>{
+  const file=e.target.files?.[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=()=>{
+   const image=new Image();
+
+   image.onload=()=>{
+    const w=Math.min(480,image.width);
+    const h=w*image.height/image.width;
+
+    objects.push({
+     type:"image",
+     src:reader.result,
+     x:(canvasWidth/2-panX)/zoom-w/2,
+     y:(canvasHeight/2-panY)/zoom-h/2,
+     w,h
+    });
+
+    commit();
+    renderBoard();
+   };
+
+   image.src=reader.result;
+  };
+
+  reader.readAsDataURL(file);
+  e.target.value="";
+ });
+
+function exportBoard(){
+ renderBoard();
+
+ const a=document.createElement("a");
+
+ a.download="mat8-taqta.png";
+ a.href=canvas.toDataURL("image/png");
+
+ a.click();
+}
+
+document.addEventListener("keydown",e=>{
+ if(!board.classList.contains("open"))return;
+
+ if(e.key==="Escape"){
+  closeBoard();
+ }
+
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"){
+  e.preventDefault();
+  undoBoard();
+ }
+
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="y"){
+  e.preventDefault();
+  redoBoard();
+ }
+});
+
+/* ==========================================
+   10. САЙТТЫ ІСКЕ ҚОСУ
+========================================== */
+
+createSidebar();
+goTo(0);
+paintTimer();
+
+resetHistory();
+selectTool("pen");
+updatePages();
+updateStatus();
+
+</script>
+</body>
+</html>
